@@ -1,0 +1,39 @@
+# Homebrew formula; all archives remain hosted on zitro.sh.
+#   brew install ZitroSoftware/tap/zitro
+class Zitro < Formula
+  desc "Command line interface for the zitro Cloud API"
+  homepage "https://zitro.sh"
+  version "@VERSION@"
+  license "MIT"
+
+  on_macos do
+    on_arm do
+      url "@BASE@/@VERSION@/zitro_@VERSION@_darwin_arm64.tar.gz"
+      sha256 "@SHA_darwin_arm64@"
+    end
+    on_intel do
+      url "@BASE@/@VERSION@/zitro_@VERSION@_darwin_amd64.tar.gz"
+      sha256 "@SHA_darwin_amd64@"
+    end
+  end
+
+  on_linux do
+    on_arm do
+      url "@BASE@/@VERSION@/zitro_@VERSION@_linux_arm64.tar.gz"
+      sha256 "@SHA_linux_arm64@"
+    end
+    on_intel do
+      url "@BASE@/@VERSION@/zitro_@VERSION@_linux_amd64.tar.gz"
+      sha256 "@SHA_linux_amd64@"
+    end
+  end
+
+  def install
+    bin.install "zitro"
+    generate_completions_from_executable(bin/"zitro", "completion")
+  end
+
+  test do
+    assert_match version.to_s, shell_output("#{bin}/zitro version")
+  end
+end
