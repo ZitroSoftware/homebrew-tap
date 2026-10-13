@@ -1,0 +1,42 @@
+name: Sync ZITRO release
+
+on:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sync-release.yml'
+      - 'scripts/**'
+      - 'templates/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zitro-release-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out tap
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - name: Test release validation
+        run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
+      - name: Verify release and update formula
+        run: python3 scripts/sync_formula.py
+      - name: Publish changed formula
+        run: |
+          git add Formula/zitro.rb
+          if git diff --cached --quiet; then
+            echo 'Formula already current'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Update ZITRO Homebrew formula from verified release'
+          git push origin HEAD:main
