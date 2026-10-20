@@ -3,28 +3,28 @@
 class Zitro < Formula
   desc "Command line interface for the zitro Cloud API"
   homepage "https://zitro.sh"
-  version "0.9.0"
+  version "0.10.0"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://zitro.sh/dl/0.9.0/zitro_0.9.0_darwin_arm64.tar.gz"
-      sha256 "8f76e83bc853ff8d17a151bd05fa23b98db8d18d27da34d7bf6de3c004a06d14"
+      url "https://zitro.sh/dl/0.10.0/zitro_0.10.0_darwin_arm64.tar.gz"
+      sha256 "fd7bb41d05b34f5cfc61365203e7c33aed4f3810a424b2e0ed3644b970026c71"
     end
     on_intel do
-      url "https://zitro.sh/dl/0.9.0/zitro_0.9.0_darwin_amd64.tar.gz"
-      sha256 "b6b112ab35e267602fdec3489208129ea86a737062206098dc47715225b76e35"
+      url "https://zitro.sh/dl/0.10.0/zitro_0.10.0_darwin_amd64.tar.gz"
+      sha256 "cfb73517e14199732e11946c02eb65e5b93648030b4838bbcdb9c978dcf76f8d"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://zitro.sh/dl/0.9.0/zitro_0.9.0_linux_arm64.tar.gz"
-      sha256 "05f59e6bce76425369b9d8db9e0869c11480cd351b49159648ddfe77a24392bd"
+      url "https://zitro.sh/dl/0.10.0/zitro_0.10.0_linux_arm64.tar.gz"
+      sha256 "2bf4570ff393af0a2aeec1d2a219fd2d44e3d73dca2696ae834b520d4c2b30bd"
     end
     on_intel do
-      url "https://zitro.sh/dl/0.9.0/zitro_0.9.0_linux_amd64.tar.gz"
-      sha256 "2df8ecd724c5ac6b11be0ed8ef1badc417890293704e87d5a536034be8be850f"
+      url "https://zitro.sh/dl/0.10.0/zitro_0.10.0_linux_amd64.tar.gz"
+      sha256 "d447f25fc00dbe47423216fa3d2951d388ef91e04dadcd4fce2c9438ed74efc0"
     end
   end
 
